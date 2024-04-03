@@ -1,0 +1,20 @@
+export const ENTRYPOINT_ADDRESS = [0x0n, 0x0n, 0x0n, 0x8001n];
+export const DEFAULT_CHAIN_ID = 1027;
+
+/**
+ * for setPubkey only
+ *
+ * 0x0000000000000000000000000000000000000000000000000000000000008006
+ */
+export const DEFAULT_ACCOUNT_ADDRESS = [0x0n, 0x0n, 0x0n, 0x8006n];
+
+export const OlaMessagePrefix = "\x14Ola Signed Message:\n";
+
+export const ETH_ADDRESS = "0x0000000000000000000000000000000000000000";
+export const EIP712_TX_TYPE = 0x71;
+export const L2_ETH_TOKEN_ADDRESS = "0x000000000000000000000000000000000000800a";
+
+export const MAX_BYTECODE_LEN_BYTES = ((1 << 16) - 1) * 32;
+
+export const DEFAULT_GAS_PER_PUBDATA_LIMIT = 50000;
+
