@@ -466,10 +466,10 @@
     estree-walker "^2.0.2"
     picomatch "^2.3.1"
 
-"@rollup/rollup-darwin-x64@4.14.1":
-  version "4.14.1"
-  resolved "https://registry.npmmirror.com/@rollup/rollup-darwin-x64/-/rollup-darwin-x64-4.14.1.tgz"
-  integrity sha512-2pYRzEjVqq2TB/UNv47BV/8vQiXkFGVmPFwJb+1E0IFFZbIX8/jo1olxqqMbo6xCXf8kabANhp5bzCij2tFLUA==
+"@rollup/rollup-darwin-x64@4.16.1":
+  version "4.16.1"
+  resolved "https://registry.npmmirror.com/@rollup/rollup-darwin-x64/-/rollup-darwin-x64-4.16.1.tgz"
+  integrity sha512-TAUK/D8khRrRIa1KwRzo8JNKk3tcqaeXWdtsiLgA8zmACWwlWLjPCJ4DULGHQrMkeBjp1Cd3Yuwx04lZgFx5Vg==
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.1"
@@ -3015,28 +3015,29 @@ rollup-plugin-dts@^6.1.0:
   optionalDependencies:
     "@babel/code-frame" "^7.22.13"
 
-rollup@^1.20.0||^2.0.0||^3.0.0||^4.0.0, rollup@^2.14.0||^3.0.0||^4.0.0, "rollup@^3.29.4 || ^4", rollup@^4.14.1:
-  version "4.14.1"
-  resolved "https://registry.npmmirror.com/rollup/-/rollup-4.14.1.tgz"
-  integrity sha512-4LnHSdd3QK2pa1J6dFbfm1HN0D7vSK/ZuZTsdyUAlA6Rr1yTouUTL13HaDOGJVgby461AhrNGBS7sCGXXtT+SA==
+rollup@^1.20.0||^2.0.0||^3.0.0||^4.0.0, rollup@^2.14.0||^3.0.0||^4.0.0, "rollup@^3.29.4 || ^4", rollup@^4.16.1:
+  version "4.16.1"
+  resolved "https://registry.npmmirror.com/rollup/-/rollup-4.16.1.tgz"
+  integrity sha512-5CaD3MPDlPKfhqzRvWXK96G6ELJfPZNb3LHiZxTHgDdC6jvwfGz2E8nY+9g1ONk4ttHsK1WaFP19Js4PSr1E3g==
   dependencies:
     "@types/estree" "1.0.5"
   optionalDependencies:
-    "@rollup/rollup-android-arm-eabi" "4.14.1"
-    "@rollup/rollup-android-arm64" "4.14.1"
-    "@rollup/rollup-darwin-arm64" "4.14.1"
-    "@rollup/rollup-darwin-x64" "4.14.1"
-    "@rollup/rollup-linux-arm-gnueabihf" "4.14.1"
-    "@rollup/rollup-linux-arm64-gnu" "4.14.1"
-    "@rollup/rollup-linux-arm64-musl" "4.14.1"
-    "@rollup/rollup-linux-powerpc64le-gnu" "4.14.1"
-    "@rollup/rollup-linux-riscv64-gnu" "4.14.1"
-    "@rollup/rollup-linux-s390x-gnu" "4.14.1"
-    "@rollup/rollup-linux-x64-gnu" "4.14.1"
-    "@rollup/rollup-linux-x64-musl" "4.14.1"
-    "@rollup/rollup-win32-arm64-msvc" "4.14.1"
-    "@rollup/rollup-win32-ia32-msvc" "4.14.1"
-    "@rollup/rollup-win32-x64-msvc" "4.14.1"
+    "@rollup/rollup-android-arm-eabi" "4.16.1"
+    "@rollup/rollup-android-arm64" "4.16.1"
+    "@rollup/rollup-darwin-arm64" "4.16.1"
+    "@rollup/rollup-darwin-x64" "4.16.1"
+    "@rollup/rollup-linux-arm-gnueabihf" "4.16.1"
+    "@rollup/rollup-linux-arm-musleabihf" "4.16.1"
+    "@rollup/rollup-linux-arm64-gnu" "4.16.1"
+    "@rollup/rollup-linux-arm64-musl" "4.16.1"
+    "@rollup/rollup-linux-powerpc64le-gnu" "4.16.1"
+    "@rollup/rollup-linux-riscv64-gnu" "4.16.1"
+    "@rollup/rollup-linux-s390x-gnu" "4.16.1"
+    "@rollup/rollup-linux-x64-gnu" "4.16.1"
+    "@rollup/rollup-linux-x64-musl" "4.16.1"
+    "@rollup/rollup-win32-arm64-msvc" "4.16.1"
+    "@rollup/rollup-win32-ia32-msvc" "4.16.1"
+    "@rollup/rollup-win32-x64-msvc" "4.16.1"
     fsevents "~2.3.2"
 
 run-applescript@^5.0.0:
