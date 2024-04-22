@@ -1,7 +1,6 @@
 import axios from "axios";
 import {DEFAULT_CHAIN_ID, EIP712_TX_TYPE, ETH_ADDRESS} from "./constants";
-import {ethers, utils, BigNumber, BytesLike} from "ethers";
-import Formatter = ethers.providers.Formatter;
+import {ethers, utils, BigNumber, BytesLike, providers} from "ethers";
 import { ConnectionInfo, poll } from '@ethersproject/web';
 import {
     BlockTag,
@@ -23,9 +22,9 @@ import {
     sleep
 } from './utils'
 
-let defaultFormatter: Formatter;
+let defaultFormatter: providers.Formatter;
 
-export class OlaProvider extends ethers.providers.JsonRpcProvider {
+export class OlaProvider extends providers.JsonRpcProvider {
     // public baseURL: string;
     private static _nextPollId = 1;
     protected contractAddresses: {
@@ -301,20 +300,20 @@ export class OlaProvider extends ethers.providers.JsonRpcProvider {
         return <Promise<BlockWithTransactions>>this._getBlock(blockHashOrBlockTag, true);
     }
 
-    static override getFormatter(): Formatter {
+    static override getFormatter(): providers.Formatter {
         if (defaultFormatter == null) {
-            defaultFormatter = new Formatter();
+            defaultFormatter = new providers.Formatter();
             const number = defaultFormatter.number.bind(defaultFormatter);
             const boolean = defaultFormatter.boolean.bind(defaultFormatter);
             const hash = defaultFormatter.hash.bind(defaultFormatter);
             const address = defaultFormatter.address.bind(defaultFormatter);
 
-            defaultFormatter.formats.receiptLog.l1BatchNumber = Formatter.allowNull(number);
+            defaultFormatter.formats.receiptLog.l1BatchNumber = providers.Formatter.allowNull(number);
 
             (defaultFormatter.formats as any).l2Tol1Log = {
                 blockNumber: number,
                 blockHash: hash,
-                l1BatchNumber: Formatter.allowNull(number),
+                l1BatchNumber: providers.Formatter.allowNull(number),
                 transactionIndex: number,
                 shardId: number,
                 isService: boolean,
@@ -322,24 +321,24 @@ export class OlaProvider extends ethers.providers.JsonRpcProvider {
                 key: hash,
                 value: hash,
                 transactionHash: hash,
-                txIndexInL1Batch: Formatter.allowNull(number),
+                txIndexInL1Batch: providers.Formatter.allowNull(number),
                 logIndex: number
             };
 
-            defaultFormatter.formats.receipt.l1BatchNumber = Formatter.allowNull(number);
-            defaultFormatter.formats.receipt.l1BatchTxIndex = Formatter.allowNull(number);
-            defaultFormatter.formats.receipt.l2ToL1Logs = Formatter.arrayOf((value) =>
-                Formatter.check((defaultFormatter.formats as any).l2Tol1Log, value)
+            defaultFormatter.formats.receipt.l1BatchNumber = providers.Formatter.allowNull(number);
+            defaultFormatter.formats.receipt.l1BatchTxIndex = providers.Formatter.allowNull(number);
+            defaultFormatter.formats.receipt.l2ToL1Logs = providers.Formatter.arrayOf((value) =>
+                providers.Formatter.check((defaultFormatter.formats as any).l2Tol1Log, value)
             );
 
-            defaultFormatter.formats.block.l1BatchNumber = Formatter.allowNull(number);
-            defaultFormatter.formats.block.l1BatchTimestamp = Formatter.allowNull(number);
-            defaultFormatter.formats.blockWithTransactions.l1BatchNumber = Formatter.allowNull(number);
-            defaultFormatter.formats.blockWithTransactions.l1BatchTimestamp = Formatter.allowNull(number);
-            defaultFormatter.formats.transaction.l1BatchNumber = Formatter.allowNull(number);
-            defaultFormatter.formats.transaction.l1BatchTxIndex = Formatter.allowNull(number);
+            defaultFormatter.formats.block.l1BatchNumber = providers.Formatter.allowNull(number);
+            defaultFormatter.formats.block.l1BatchTimestamp = providers.Formatter.allowNull(number);
+            defaultFormatter.formats.blockWithTransactions.l1BatchNumber = providers.Formatter.allowNull(number);
+            defaultFormatter.formats.blockWithTransactions.l1BatchTimestamp = providers.Formatter.allowNull(number);
+            defaultFormatter.formats.transaction.l1BatchNumber = providers.Formatter.allowNull(number);
+            defaultFormatter.formats.transaction.l1BatchTxIndex = providers.Formatter.allowNull(number);
 
-            defaultFormatter.formats.filterLog.l1BatchNumber = Formatter.allowNull(number);
+            defaultFormatter.formats.filterLog.l1BatchNumber = providers.Formatter.allowNull(number);
         }
         return defaultFormatter;
     }
@@ -485,7 +484,7 @@ export class OlaProvider extends ethers.providers.JsonRpcProvider {
     }
 
     async getL1BatchNumber(): Promise<number> {
-        const number = await this.send('ola_L1BatchNumber', []);
+        const number = await this.send('ola_getL1BatchNumber', []);
         return BigNumber.from(number).toNumber();
     }
 
@@ -516,7 +515,7 @@ export class OlaProvider extends ethers.providers.JsonRpcProvider {
     }
 
     protected _parseLogs(logs: any[]): Array<Log> {
-        return Formatter.arrayOf(this.formatter.filterLog.bind(this.formatter))(logs);
+        return providers.Formatter.arrayOf(this.formatter.filterLog.bind(this.formatter))(logs);
     }
 
     override async getTransaction(hash: string | Promise<string>): Promise<TransactionResponse> {
@@ -542,6 +541,12 @@ export class OlaProvider extends ethers.providers.JsonRpcProvider {
 
         return response;
     }
+
+    static getDefaultProvider() {
+        // TODO (SMA-1606): Add different urls for different networks.
+        return new OlaProvider(process.env.ZKSYNC_WEB3_API_URL || 'http://localhost:3050');
+    }
+
     async getDefaultBridgeAddresses() {
         if (!this.contractAddresses.erc20BridgeL1) {
             let addresses = await this.send('ola_getBridgeContracts', []);

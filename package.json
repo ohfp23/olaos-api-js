@@ -1,5 +1,5 @@
 {
-  "name": "@sin7y/ola-js-sdk",
+  "name": "olaos-api-js",
   "version": "0.0.16",
   "description": "JavaScript SDK for ola.",
   "main": "dist/index.cjs.js",
@@ -27,12 +27,12 @@
     "@types/mocha": "^8.2.2",
     "@types/node": "^16.0.0",
     "chai": "^4.3.4",
+    "ethers": "~5.7.0",
     "np": "^9.2.0",
-    "rollup": "^4.9.6",
+    "rollup": "^4.14.1",
     "rollup-plugin-dts": "^6.1.0",
     "ts-node": "^10.0.0",
-    "typescript": "^4.3.5",
-    "ethers": "~5.7.0"
+    "typescript": "^4.3.5"
   },
   "dependencies": {
     "@sin7y/ola-abi-wasm": "^0.0.4",
