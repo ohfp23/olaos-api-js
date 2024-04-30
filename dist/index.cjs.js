@@ -468,7 +468,7 @@ class OlaProvider extends ethers.providers.JsonRpcProvider {
     async getTransactionReceipt(transactionHash) {
         await this.getNetwork();
         transactionHash = await transactionHash;
-        const params = { transactionHash: this.formatter.hash(transactionHash, true) };
+        const params = { transactionHash: this.formatter.hash(transactionHash, false) };
         return web.poll(async () => {
             const result = await this.perform('getTransactionReceipt', params);
             if (result == null) {

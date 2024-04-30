@@ -237,7 +237,7 @@ export class OlaProvider extends providers.JsonRpcProvider {
 
         transactionHash = await transactionHash;
 
-        const params = {transactionHash: this.formatter.hash(transactionHash, true)};
+        const params = {transactionHash: this.formatter.hash(transactionHash, false)};
 
         return poll(
             async () => {
