@@ -327,9 +327,9 @@ export class OlaProvider extends providers.JsonRpcProvider {
 
             defaultFormatter.formats.receipt.l1BatchNumber = providers.Formatter.allowNull(number);
             defaultFormatter.formats.receipt.l1BatchTxIndex = providers.Formatter.allowNull(number);
-            defaultFormatter.formats.receipt.l2ToL1Logs = providers.Formatter.arrayOf((value) =>
-                providers.Formatter.check((defaultFormatter.formats as any).l2Tol1Log, value)
-            );
+            // defaultFormatter.formats.receipt.l2ToL1Logs = providers.Formatter.arrayOf((value) =>
+            //     providers.Formatter.check((defaultFormatter.formats as any).l2Tol1Log, value)
+            // );
 
             defaultFormatter.formats.block.l1BatchNumber = providers.Formatter.allowNull(number);
             defaultFormatter.formats.block.l1BatchTimestamp = providers.Formatter.allowNull(number);

@@ -544,7 +544,9 @@ class OlaProvider extends ethers.providers.JsonRpcProvider {
             };
             defaultFormatter.formats.receipt.l1BatchNumber = ethers.providers.Formatter.allowNull(number);
             defaultFormatter.formats.receipt.l1BatchTxIndex = ethers.providers.Formatter.allowNull(number);
-            defaultFormatter.formats.receipt.l2ToL1Logs = ethers.providers.Formatter.arrayOf((value) => ethers.providers.Formatter.check(defaultFormatter.formats.l2Tol1Log, value));
+            // defaultFormatter.formats.receipt.l2ToL1Logs = providers.Formatter.arrayOf((value) =>
+            //     providers.Formatter.check((defaultFormatter.formats as any).l2Tol1Log, value)
+            // );
             defaultFormatter.formats.block.l1BatchNumber = ethers.providers.Formatter.allowNull(number);
             defaultFormatter.formats.block.l1BatchTimestamp = ethers.providers.Formatter.allowNull(number);
             defaultFormatter.formats.blockWithTransactions.l1BatchNumber = ethers.providers.Formatter.allowNull(number);
